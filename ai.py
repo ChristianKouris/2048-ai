@@ -6,8 +6,8 @@ MOVES = {0: 'up', 1: 'left', 2: 'down', 3: 'right'}
 MAX_PLAYER, CHANCE_PLAYER = 0, 1 
 
 # Tree node. To be used to construct a game tree. 
-# NOTE: Modify at your own risk.
 class Node: 
+    # Recommended: do not modifying this __init__ function
     def __init__(self, state, current_depth, player_type):
         self.state = (copy.deepcopy(state[0]), state[1])
 
@@ -24,7 +24,7 @@ class Node:
 
 # AI agent. To be used do determine a promising next move.
 class AI:
-    # NOTE: Modify at your own risk.
+    # Recommended: do not modifying this __init__ function
     def __init__(self, root_state, depth): 
         self.root = Node(root_state, 0, MAX_PLAYER)
         self.depth = depth
@@ -63,7 +63,7 @@ class AI:
     # returns a (best direction, best value) tuple if node is a MAX_PLAYER
     # and a (None, expected best value) tuple if node is a CHANCE_PLAYER
     def expectimax(self, node = None):
-        # TODO: delete this random choice
+        # TODO: delete this random choice but make sure the return type of the function is the same
         return random.randint(0, 3), 0
 
         if node == None:
@@ -81,7 +81,7 @@ class AI:
             # TODO: CHANCE_PLAYER logic
             pass
 
-    # NOTE: Modify at your own risk.
+    # Do not modify this function
     def compute_decision(self):
         self.build_tree()
         direction, _ = self.expectimax(self.root)
