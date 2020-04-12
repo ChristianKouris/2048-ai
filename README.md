@@ -12,9 +12,11 @@ Submission
 ----
 You only need to submit the `ai.py` file on Gradescope for grading. 
 
-If you have changed other files, make sure that your implementation works properly with the given `main.py` and `game.py`, and `test.py` which we will use for grading. 
+If you have changed other files, make sure that your implementation works properly with the given `main.py` and `game.py`, and `test.py` which we will use for grading. The grading metrics are the same as PA1 (if you code fails the tests in `test.py` it will not get more than the Half grade). In addition, there are 3 extra points, see below. 
 
 You can change almost anything in the starter code in `ai.py` except the the `compute_decision` function at Line 85. This function will be used by the tester. 
+
+
 
 Task
 -----
