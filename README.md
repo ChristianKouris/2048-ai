@@ -61,8 +61,9 @@ In order to get the extra credits, you will need to achieve a score of more than
 Notes
 ------
 The following keyboard options are available:
-    - 'r': restart the game
-    - 'u': undo a move
-    - '3'-'7': change board size
-    - 'g': toggle grayscale
+- 'r': restart the game
+- 'u': undo a move
+- '3'-'7': change board size
+- 'g': toggle grayscale
+- 'e': switch to extra credit
 
