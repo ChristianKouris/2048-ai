@@ -1,7 +1,8 @@
 Assignment 2: 2048
 =========
-
-Your task is to implement a game AI for the 2048 game based on expectimax search. The base game engine uses code from [here](https://gist.github.com/lewisjdeane/752eeba4635b479f8bb2). 
+DO NOT FORK THIS REPO
+----
+Implement a game AI for the 2048 game based on expectimax search. The base game engine uses code from [here](https://gist.github.com/lewisjdeane/752eeba4635b479f8bb2). 
 
 Due date
 -----
@@ -13,7 +14,7 @@ You only need to submit the `ai.py` file on Gradescope for grading.
 
 If you have changed other files, make sure that your implementation works properly with the given `main.py` and `game.py`, and `test.py` which we will use for grading. 
 
-You can change almost anything in the starter code in `ai.py` except the the `compute_decision` function at Line 85. This function will be used by the tests. 
+You can change almost anything in the starter code in `ai.py` except the the `compute_decision` function at Line 85. This function will be used by the tester. 
 
 Task
 -----
@@ -34,7 +35,7 @@ This tree represents all the game states of a player-computer-player sequence (t
 
 Compute the expectimax values of all the nodes in the game tree, and return the optimal move for the player. In the starter code the AI just returns a random move.
 
-If you have implemented this AI correctly, you depth-3 search should almost always reach 512 tiles and a score over 5000 quite often, as shown in the movie file. 
+If you have implemented the AI correctly, you depth-3 search should almost always reach 512 tiles and a score over 5000 quite often, as shown in the movie file. 
 
 Testing
 -----
@@ -47,17 +48,17 @@ For grading, we will run tests in the same way on other test states and see if y
 
 Extra credits (3 points)
 ------
-While depth-3 search gives okay performance, it can apparently be improved by searching more depth or improving the evaluation function, or both. For improving the evaluation function, you can implement a heuristic value that takes into account of the difference between a "good" and "bad" game state. You can feel free to use online resources to see what strategies people have been using in playing 2048. 
+While depth-3 search gives okay performance, it can apparently be improved by searching more depth or improving the evaluation function, or both. For improving the evaluation function, you can implement a heuristic value that takes into account of the difference between a "good" and "bad" game state. You can feel free to use online resources to see what strategies people have been using to reach higher scores in 2048. 
 
-If you want to try this extra credits part, implement a stronger AI in the `compute_decision_ec` function at the bottom of the `ai.py` file. When running the game, pressing `e` will activate the decisions made by the `compute_decision_ec` function. 
+If you want to try this extra credits part, implement a stronger AI in the `compute_decision_ec` function at the bottom of the `ai.py` file. When running the game, pressing `e` will activate/deactivate the decisions made by the `compute_decision_ec` function. 
 
-You can get up to 3 extra points if you can engineer the AI to reach 2048 often (achieving a score of more than 20,000 on at least 4/10 runs), while each step does not take too long when running on a laptop. Note that if you implement a large tree, the search may make each decision so slow that you do not want to watch it play. In that case you want to think about how to improve the implementation. 
+You can get up to 3 extra points if you can engineer the AI to reach 2048 often (achieving a score of more than 20,000 on at least 4/10 runs), while each step does not take too long when running on a laptop. Note that if you implement a large tree, the search may make each decision so slow that you do not want to watch it play. In that case you want to think about how to improve the implementation, or think about improving the design of the evaluation function instead. 
 
 To test your extra credit implementation, run:
 
 $ python main.py -t 2
 
-In order to get the extra credits, you will need to achieve a score of more than 20,000 on at least 4/10 runs.
+In order to get the extra credits, you will need to achieve a score of more than 20,000 on at least 4/10 runs. The tester will show whether you have succeeded. 
 
 Notes
 ------
