@@ -32,7 +32,7 @@ def test(board_file='test_states', sol_file='test_sols'):
 
         sol_direction, sol_score = read_sol_line(sol_lines[i])
 
-        print_test_result(direction == sol_direction, "direction")
+        #print_test_result(direction == sol_direction, "direction")
         print_test_result((score >= sol_score - TOL) and score <= (sol_score + TOL), "expected score")
 
 def get_best_tile(tile_matrix):

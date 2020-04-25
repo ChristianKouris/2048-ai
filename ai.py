@@ -45,6 +45,7 @@ class AI:
             for direction in MOVES:
                 is_moved = self.simulator.move(direction)
                 if( not is_moved ):
+                    self.simulator.reset(*(node.state))
                     continue
                 child = Node( self.simulator.get_state(), node.depth+1, CHANCE_PLAYER )
                 self.build_tree( child )
@@ -56,8 +57,8 @@ class AI:
                 self.simulator.tile_matrix[tile[0]][tile[1]] = 2
                 child = Node( self.simulator.get_state(), node.depth+1, MAX_PLAYER )
                 self.build_tree( child )
-                self.simulator.tile_matrix[tile[0]][tile[1]] = 0
                 node.children.append( (None, child) )
+                self.simulator.tile_matrix[tile[0]][tile[1]] = 0
 
     # expectimax implementation; 
     # returns a (best direction, best value) tuple if node is a MAX_PLAYER
