@@ -19,8 +19,10 @@ class Node:
 
     # returns whether this is a terminal state (i.e., no children)
     def is_terminal(self):
-        #TODO: complete this
-        pass
+        if len(self.children):
+            return 0
+        else: 
+            return 1
 
 # AI agent. To be used do determine a promising next move.
 class AI:
@@ -40,46 +42,50 @@ class AI:
             return 
 
         if node.player_type == MAX_PLAYER:
-            # TODO: find all children resulting from 
-            # all possible moves (ignore "no-op" moves)
-
-            # NOTE: the following calls may be useful:
-            # self.simulator.reset(*(node.state))
-            # self.simulator.get_state()
-            # self.simulator.move(direction)
-            pass
+            for direction in MOVES:
+                is_moved = self.simulator.move(direction)
+                if( not is_moved ):
+                    continue
+                child = Node( self.simulator.get_state(), node.depth+1, CHANCE_PLAYER )
+                self.build_tree( child )
+                node.children.append( (direction, child) )
+                self.simulator.reset(*(node.state))
 
         elif node.player_type == CHANCE_PLAYER:
-            # TODO: find all children resulting from 
-            # all possible placements of '2's
-            # NOTE: the following calls may be useful
-            # (in addition to those mentioned above):
-            # self.simulator.get_open_tiles():
-            pass
-
-        # TODO: build a tree for each child of this node
+            for tile in self.simulator.get_open_tiles():
+                self.simulator.tile_matrix[tile[0]][tile[1]] = 2
+                child = Node( self.simulator.get_state(), node.depth+1, MAX_PLAYER )
+                self.build_tree( child )
+                self.simulator.tile_matrix[tile[0]][tile[1]] = 0
+                node.children.append( (None, child) )
 
     # expectimax implementation; 
     # returns a (best direction, best value) tuple if node is a MAX_PLAYER
     # and a (None, expected best value) tuple if node is a CHANCE_PLAYER
     def expectimax(self, node = None):
-        # TODO: delete this random choice but make sure the return type of the function is the same
-        return random.randint(0, 3), 0
 
         if node == None:
             node = self.root
 
         if node.is_terminal():
-            # TODO: base case
-            pass
+            return (None, node.state[1])
 
         elif node.player_type == MAX_PLAYER:
-            # TODO: MAX_PLAYER logic
-            pass
+            value = -1
+            direction = None
+            for child in node.children:
+                (c_dir, c_val) = self.expectimax(child[1])
+                if c_val > value:
+                    value = c_val
+                    direction = child[0]
+            return (direction, value)
 
         elif node.player_type == CHANCE_PLAYER:
-            # TODO: CHANCE_PLAYER logic
-            pass
+            value = 0
+            for child in node.children:
+                value += self.expectimax(child[1])[1]
+            value /= len(node.children)
+            return (None, value)
 
     # Do not modify this function
     def compute_decision(self):
